@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://figurine3d.page.gd/ -->
+<html lang="ro"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Figurine 3D – Piatra Neamț</title>
+    <link href="./Figurine 3D – Piatra Neamț_files/css2" rel="stylesheet">
+    <script src="./Figurine 3D – Piatra Neamț_files/saved_resource"></script><style type="text/css" id="operaUserStyle"></style><style type="text/css" id="operaUserStyle"></style>
+    <style>
+        :root {
+            --navy: #0f1e2e;
+            --slate: #1e3a5f;
+            --accent: #e8a84c;
+            --accent2: #4cc9e8;
+            --light: #f4f6f9;
+            --card: #ffffff;
+            --text: #1a2535;
+            --muted: #6b7a8f;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--light);
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* ─── FLOATING NAV ─── */
+        #float-nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            background: rgba(15, 30, 46, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 60px;
+            padding: 10px 24px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.28), 0 0 0 1px rgba(232,168,76,0.15);
+            transition: all 0.35s cubic-bezier(0.4,0,0.2,1);
+            max-width: calc(100vw - 32px);
+        }
+
+        #float-nav.scrolled {
+            box-shadow: 0 12px 48px rgba(0,0,0,0.45), 0 0 0 1px rgba(232,168,76,0.25);
+            background: rgba(15, 30, 46, 0.97);
+        }
+
+        .nav-logo {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 0.95rem;
+            color: var(--accent);
+            letter-spacing: -0.02em;
+            white-space: nowrap;
+            margin-right: 8px;
+        }
+
+        .nav-logo span { color: #ffffff; }
+
+        .nav-divider {
+            width: 1px;
+            height: 20px;
+            background: rgba(255,255,255,0.15);
+            margin: 0 4px;
+        }
+
+        .nav-link {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            color: rgba(255,255,255,0.75);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 40px;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover {
+            background: rgba(232,168,76,0.15);
+            color: var(--accent);
+        }
+
+        .nav-link.active {
+            background: var(--accent);
+            color: var(--navy);
+            font-weight: 700;
+        }
+
+        /* Hamburger */
+        #nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 4px;
+            margin-left: 8px;
+        }
+
+        #nav-toggle span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: rgba(255,255,255,0.8);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+
+        #nav-toggle.open span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        #nav-toggle.open span:nth-child(2) { opacity: 0; }
+        #nav-toggle.open span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        /* Mobile dropdown */
+        #nav-mobile {
+            display: none;
+            position: fixed;
+            top: 72px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: rgba(15, 30, 46, 0.97);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 12px;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 200px;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.4);
+            animation: dropIn 0.25s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        #nav-mobile.visible { display: flex; }
+
+        @keyframes dropIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(-10px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        #nav-mobile .nav-link {
+            font-size: 0.85rem;
+            padding: 10px 16px;
+        }
+
+        /* ─── HERO ─── */
+        #hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--navy) 0%, #162840 40%, #1e3a5f 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(76,201,232,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(76,201,232,0.06) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
+
+        .hero-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,168,76,0.15) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+            animation: pulse 6s ease-in-out infinite;
+        }
+
+        .hero-glow2 {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(76,201,232,0.12) 0%, transparent 70%);
+            bottom: -80px;
+            left: -80px;
+            animation: pulse 8s ease-in-out infinite 2s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%       { transform: scale(1.1); opacity: 0.7; }
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,168,76,0.15);
+            border: 1px solid rgba(232,168,76,0.4);
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--accent);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: var(--accent);
+            animation: blink 2s infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.3; }
+        }
+
+        h1.hero-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            line-height: 1.0;
+            color: #ffffff;
+            letter-spacing: -0.03em;
+        }
+
+        h1.hero-title .accent { color: var(--accent); }
+        h1.hero-title .accent2 { color: var(--accent2); }
+
+        .hero-sub {
+            font-size: clamp(0.95rem, 2vw, 1.15rem);
+            color: rgba(255,255,255,0.6);
+            font-weight: 300;
+            max-width: 520px;
+            line-height: 1.75;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--accent);
+            color: var(--navy);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            letter-spacing: 0.02em;
+            box-shadow: 0 4px 24px rgba(232,168,76,0.35);
+        }
+
+        .btn-primary:hover {
+            background: #f0b85e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(232,168,76,0.5);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: transparent;
+            color: #ffffff;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.25);
+            transition: all 0.25s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: rgba(255,255,255,0.6);
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-2px);
+        }
+
+        /* ─── STATS BAR ─── */
+        .stats-bar {
+            background: #ffffff;
+            border-top: 3px solid var(--accent);
+            box-shadow: 0 -4px 32px rgba(0,0,0,0.08);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 28px 20px;
+            border-right: 1px solid rgba(0,0,0,0.07);
+        }
+
+        .stat-item:last-child { border-right: none; }
+
+        .stat-num {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 2rem;
+            color: var(--slate);
+            letter-spacing: -0.03em;
+        }
+
+        .stat-num .acc { color: var(--accent); }
+        .stat-label {
+            font-size: 0.75rem;
+            color: var(--muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 4px;
+        }
+
+        /* ─── SECTIONS ─── */
+        section { scroll-margin-top: 80px; }
+
+        .section-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            color: var(--navy);
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+        }
+
+        /* ─── PRODUCT CARDS ─── */
+        .product-card {
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(0,0,0,0.14);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.06));
+        }
+
+        .tag {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 20px;
+        }
+
+        /* ─── PROCESS ─── */
+        .process-step {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .step-num {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 900;
+            font-size: 3.5rem;
+            color: rgba(30,58,95,0.12);
+            line-height: 1;
+            min-width: 60px;
+            transition: color 0.3s;
+        }
+
+        .process-step:hover .step-num { color: rgba(232,168,76,0.4); }
+
+        /* ─── CONTACT ─── */
+        .contact-card {
+            background: var(--navy);
+            border-radius: 24px;
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: -80px; right: -80px;
+            width: 300px; height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(232,168,76,0.15) 0%, transparent 70%);
+        }
+
+        .input-field {
+            width: 100%;
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #ffffff;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .input-field::placeholder { color: rgba(255,255,255,0.35); }
+        .input-field:focus { border-color: var(--accent); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--navy);
+            color: rgba(255,255,255,0.5);
+            font-size: 0.82rem;
+        }
+
+        /* ─── SCROLL ANIMATION ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.65s ease, transform 0.65s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .nav-link.desktop-only { display: none; }
+            .nav-divider { display: none; }
+            #nav-toggle { display: flex; }
+
+            .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.07); }
+            .stat-item:last-child { border-bottom: none; }
+
+            .contact-card { padding: 28px 20px; }
+
+            #float-nav { padding: 10px 16px; }
+            .nav-logo { font-size: 0.85rem; }
+        }
+
+        @media (max-width: 480px) {
+            h1.hero-title { font-size: 2.4rem; }
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.visible{visibility:visible}.absolute{position:absolute}.relative{position:relative}.bottom-10{bottom:2.5rem}.left-1\/2{left:50%}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-6{margin-bottom:1.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.max-w-3xl{max-width:48rem}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-32{padding-top:8rem;padding-bottom:8rem}.text-center{text-align:center}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.leading-relaxed{line-height:1.625}.opacity-40{opacity:0.4}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.container{width:100%}@media (min-width: 640px){.container{max-width:640px}}@media (min-width: 768px){.container{max-width:768px}}@media (min-width: 1024px){.container{max-width:1024px}}@media (min-width: 1280px){.container{max-width:1280px}}@media (min-width: 1536px){.container{max-width:1536px}}.visible{visibility:visible}.absolute{position:absolute}.relative{position:relative}.bottom-10{bottom:2.5rem}.left-1\/2{left:50%}.z-10{z-index:10}.mx-auto{margin-left:auto;margin-right:auto}.mb-10{margin-bottom:2.5rem}.mb-16{margin-bottom:4rem}.mb-2{margin-bottom:0.5rem}.mb-6{margin-bottom:1.5rem}.mt-3{margin-top:0.75rem}.mt-5{margin-top:1.25rem}.mt-8{margin-top:2rem}.flex{display:flex}.grid{display:grid}.max-w-3xl{max-width:48rem}.-translate-x-1\/2{--tw-translate-x:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-center{align-items:center}.justify-between{justify-content:space-between}.gap-12{gap:3rem}.gap-16{gap:4rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.p-6{padding:1.5rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.py-12{padding-top:3rem;padding-bottom:3rem}.py-24{padding-top:6rem;padding-bottom:6rem}.py-32{padding-top:8rem;padding-bottom:8rem}.text-center{text-align:center}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.font-bold{font-weight:700}.leading-relaxed{line-height:1.625}.opacity-40{opacity:0.4}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}}@media (min-width: 768px){.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}}@media (min-width: 1024px){.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}}</style><style type="text/css">:root img[width="728"][height="90"], :root [href="https://adstub.net/cina777/"], :root [href="https://adstub.net/arab777/"], :root [href="https://adstub.net/ratu89/"], :root [href="https://adstub.net/judi89/"], :root [href^="//mage98rquewz.com/"], :root [href^="//x4pollyxxpush.com/"], :root iframe[style="border: 0; width: 728px; height: 110px;"], :root div[data-iab-tag], :root div[data-ad], :root a[href^="https://pornworks.com/fr/undress/image?utm_source="], :root a[href^="https://cosmicfundboost.com/trck/"], :root a[href*="?bz=300*250"] > img[src*=".alicdn.com/"], :root a[href*="/www/delivery/"], :root a[href*="/aff_c?offer_id="] > img, :root a[href*=".slext2.com/"], :root a[href*=".digital2cloud.com/?"], :root a[href*=".atimaze.com/"], :root [id^="dfp_ban_"], :root [data-ad-position], :root [class*="-ad-placeholder-"], :root #infopopup > a > img, :root span[id^="ezoic-pub-ad-placeholder-"], :root ins.adsbygoogle[data-ad-slot], :root ins.adsbygoogle[data-ad-client], :root img[src^="https://s-img.adskeeper.com/"], :root guj-ad, :root gpt-ad, :root div[ow-ad-unit-wrapper], :root div[id^="zergnet-widget"], :root div[id^="vuukle-ad-"], :root div[id^="taboola-stream-"], :root div[id^="sticky_ad_"], :root div[id^="st"][style^="z-index: 999999999;"], :root div[id^="rc-widget-"], :root div[id^="mrec-leaderboard-"], :root div[id^="gpt_ad_"], :root div[id^="ezoic-pub-ad-"], :root div[id^="dfp-ad-"], :root div[id^="crt-"][style], :root div[id^="apn_native_ad_slot_"], :root div[id^="adspot-"], :root div[id^="adrotate_widgets-"], :root ps-connatix-module, :root div[id^="ad_position_"], :root div[id^="ad-div-"], :root div[id*="ScriptRoot"], :root div[id*="MarketGid"], :root [href="https://adstub.net/rusia777/"], :root div[data-id-advertdfpconf], :root [data-ad-text], :root div[data-dfp-id], :root hl-adsense, :root div[data-contentexchange-widget], :root div[data-alias="300x250 Ad 2"], :root div[data-adunit-path], :root div[data-adname], :root a[href*="?bz=160*600"] > img[src*=".alicdn.com/"], :root div[data-ad-placeholder], :root a[href^="https://osfultrbriolenai.info/"], :root div[class^="Adstyled__AdWrapper-"], :root a[href^="https://go.xlviiirdr.com"], :root div[class$="-adlabel"], :root display-ads, :root a[href^="https://go.grinsbest.com/"], :root citrus-ad-wrapper, :root a[href^="https://s.zlinkd.com/"], :root bottomadblock, :root amp-fx-flying-carpet, :root amp-embed[type="taboola"], :root amp-connatix-player, :root div[id^="google_dfp_"], :root ad-slot, :root a[href^="https://www.purevpn.com/"][href*="&utm_source=aff-"], :root a[href^="https://www.privateinternetaccess.com/"] > img, :root a[href^="https://www.onlineusershielder.com/"], :root a[href^="https://financeads.net/tc.php?"], :root a[href^="https://www.mrskin.com/tour"], :root a[href^="https://www.infowarsstore.com/"] > img, :root a[href^="https://ak.psaltauw.net/"], :root broadstreet-zone-container, :root a[href^="https://www.highperformancecpmgate.com/"], :root amp-ad, :root a[href^="https://www.highcpmrevenuenetwork.com/"], :root a[href^="https://www.get-express-vpn.com/offer/"], :root a[href^="https://lnkxt.bannerator.com/"], :root a[href^="https://www.geekbuying.com/dynamic-ads/"], :root [href^="https://groorsoa.net/"], :root a[href^="https://www.financeads.net/tc.php?"], :root a[href^="https://www.effectiveratecpm.com/"], :root [href^="https://www.herbanomic.com/"] > img, :root a[href^="https://www.dql2clk.com/"], :root a[href^="https://www.nutaku.net/signup/landing/"], :root a[href^="https://www.dating-finder.com/signup/?ai_d="], :root a[href^="https://explore-site.com/"], :root a[href^="https://www.brazzersnetwork.com/landing/"], :root [data-template-type="nativead"], :root a[href^="https://www.adultempire.com/"][href*="?partner_id="], :root a[href^="https://voluum.prom-xcams.com/"], :root a[href^="https://twinrdsyte.com/"], :root a[href^="https://twinrdsrv.com/"], :root a[href^="https://syndicate.contentsserved.com/"], :root div[data-alias="300x250 Ad 1"], :root a[href^="https://trk.nfl-online-streams.club/"], :root a[href^="https://tracking.avapartner.com/"], :root a[href^="https://track.wg-aff.com"], :root a[href^="https://track.ultravpn.com/"], :root a[href^="https://track.afcpatrk.com/"], :root a[href^="https://track.adform.net/"], :root a[href^="https://torguard.net/aff.php"] > img, :root [data-identity="adhesive-ad"], :root a[href^="https://tc.tradetracker.net/"] > img, :root a[href^="https://tatrck.com/"], :root [href^="https://zstacklife.com/"] img, :root a[href^="https://click.candyoffers.com/"], :root a[href^="https://t.aslnk.link/"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"], :root a[href^="https://t.ajump1.com/"], :root a[href^="https://t.adating.link/"], :root a[href^="https://go.trackitalltheway.com/"], :root [href^="https://track.fiverr.com/visit/"] > img, :root a[href^="https://syndication.exoclick.com/"], :root a[href^="https://syndication.dynsrvtbg.com/"], :root a[href*="?bz=725*90"] > img[src*=".alicdn.com/"], :root .gnt_em_vp_c[data-g-s="vp_dk"], :root div[data-ad-wrapper], :root a[href^="https://svb-analytics.trackerrr.com/"], :root a[onmousedown^="this.href='https://paid.outbrain.com/network/redir?"] + .ob_source, :root a[href^="http://www.iyalc.com/"], :root a[href^="https://claring-loccelkin.com/"], :root a[href^="https://stardomcoit.com/"], :root a[href^="https://track.aftrk5.com/"], :root a[href^="https://slkmis.com/"], :root a[href^="https://myclick-2.com/"], :root a[href^="https://sexynearme.com/"], :root [data-ad-manager-id], :root a[href^="https://s.zlinkr.com/"], :root [href="https://adstub.net/gaza88/"], :root a[href^="https://ad.doubleclick.net/"], :root a[href^="https://static.fleshlight.com/images/banners/"], :root a[href^="https://s.zlink7.com/"], :root a[href^="https://s.ma3ion.com/"], :root a[href^="https://s.eunow4u.com/"], :root a[href^="https://random-affiliate.atimaze.com/"], :root #kt_player > div[style$="display: block;"][style*="inset: 0px;"], :root [href$="/sexdating.php"], :root a[href^="https://quotationfirearmrevision.com/"], :root a[href^="https://pubads.g.doubleclick.net/"], :root a[href^="https://prf.hn/click/"][href*="/camref:"] > img, :root a[href^="https://serve.awmdelivery.com/"], :root a[href^="https://www.dating-finder.com/?ai_d="], :root a[href^="https://prf.hn/click/"][href*="/adref:"] > img, :root [href^="https://ap.octopuspop.com/click/"] > img, :root app-ad, :root a[href^="https://postback1win.com/"], :root a[href^="https://a.adtng.com/"], :root a[href^="https://playnano.online/offerwalls/?ref="], :root a[href^="https://mmwebhandler.aff-online.com/"], :root a[href^="https://www.bet365.com/"][href*="affiliate="], :root a[href^="https://pb-track.com/"], :root a[href^="https://pb-front.com/"], :root a[href^="https://paid.outbrain.com/network/redir?"], :root a[href^="https://streamate.com/landing/click/"], :root a[href^="https://upsups.click/"], :root a[href^="https://ndt5.net/"], :root a[href^="https://natour.naughtyamerica.com/track/"], :root a[href^="https://mediaserver.entainpartners.com/renderBanner.do?"], :root [data-ad-name], :root a[href^="https://loboclick.com/"], :root a[href^="https://lead1.pl/"], :root a[href^="https://landing.brazzersnetwork.com/"], :root a[href^="https://juicyads.in/"], :root a[href^="https://snowdayonline.xyz/"], :root a[href^="https://join.dreamsexworld.com/"], :root a[href^="https://join.bannedsextapes.com/track/"], :root a[href^="https://jaxofuna.com/"], :root a[href^="https://italarizege.xyz/"], :root a[href^="https://identicaldrench.com/"], :root ad-shield-ads, :root a[href^="https://hot-growngames.life/"], :root a[href*=".antfa.link/"], :root a[href^="https://helmethomicidal.com/"], :root display-ad-component, :root a[href^="https://golinks.work/"], :root a[href^="https://s.zlinkn.com/"], :root a[href^="https://go.xxxvjmp.com/"], :root a[href^="https://go.xxxjmp.com"], :root a[href^="https://zirdough.net/"], :root [class^="tile-picker__CitrusBannerContainer-sc-"], :root a[href^="https://go.xxxiijmp.com"], :root a[href^="https://go.xtbaffiliates.com/"], :root [data-role="tile-ads-module"], :root a[href^="https://go.xlviirdr.com"], :root a[href^="https://go.xlivrdr.com"], :root a[href^="https://ismlks.com/"], :root [href^="https://www.mypillow.com/"] > img, :root a[href^="https://go.xlirdr.com"], :root [data-css-class="dfp-inarticle"], :root a[href^="https://go.tmrjmp.com"], :root a[href^="https://go.markets.com/visit/?bta="], :root a[href^="https://billing.purevpn.com/aff.php"] > img, :root a[href^="https://go.hpyrdr.com/"], :root a[href^="https://lijavaxa.com/"], :root a[href^="https://go.goaserv.com/"], :root app-large-ad, :root [href^="https://turtlebids.irauctions.com/"] img, :root div[data-adunit], :root a[href^="https://go.etoro.com/"] > img, :root a[href^="https://go.dmzjmp.com"], :root a[href^="https://www.bang.com/?aff="], :root #mgb-container > #mgb, :root a[href^="https://go.admjmp.com"], :root a[href^="https://get.surfshark.net/aff_c?"][href*="&aff_id="] > img, :root a[href^="https://datewhisper.life/"], :root a[href^="https://click.linksynergy.com/fs-bin/"] > img, :root a[href^="https://get-link.xyz/"], :root a[href^="https://www.mrskin.com/account/"], :root a[href^="https://www.adskeeper.com"], :root a[data-redirect^="https://paid.outbrain.com/network/redir?"], :root [href^="https://clicks.affstrack.com/"] > img, :root a[href^="https://engine.phn.doublepimp.com/"], :root a[href^="https://dl-protect.net/"], :root a[href*=".foxqck.com/"], :root a[href^="https://ctosrd.com/"], :root a[href^="https://go.bushheel.com/"], :root a[href^="https://ctjdwm.com/"], :root [href="//sexcams.plus/"], :root a[href^="https://camfapr.com/landing/click/"], :root a[href^="https://prf.hn/click/"][href*="/creativeref:"] > img, :root a[href*="&maxads="], :root a[href^="http://www.adultempire.com/unlimited/promo?"][href*="&partner_id="], :root a[href^="https://1betandgonow.com/"], :root a[href^="https://chaturbate.com/in/?"], :root a[href^="https://t.ajrkm1.com/"], :root a[href^="https://bongacams10.com/track?"], :root a[href*=".g2afse.com/"], :root a[href^="https://bodelen.com/"], :root a[href^="//hoodingluster.com/"], :root a[href^="https://black77854.com/"], :root a[href^="https://getmatchedlocally.com/"], :root app-advertisement, :root a[href^="https://rixofa.com/"], :root a[href^="https://best-experience-cool.com/"], :root [id^="adswidget"], :root [data-taboola-options], :root a[href^="https://believessway.com/"], :root a[href^="https://Click.ggpickaff.com/"], :root a[href^="https://banners.livepartners.com/"], :root a[href^="http://revolvemockerycopper.com/"], :root a[href^="https://awptjmp.com/"], :root a[href^="https://join.sexworld3d.com/track/"], :root a[href^="https://aweptjmp.com/"], :root a[href^="https://ausoafab.net/"], :root a[href^="https://clicks.pipaffiliates.com/"], :root a[href^="https://aj1070.online/"], :root a[href^="https://a.bestcontentoperation.top/"], :root a[href^="https://adultfriendfinder.com/go/"], :root a[href^="https://ads.planetwin365affiliate.com/"], :root a[href^="https://ads.leovegas.com/"], :root a[href^="https://go.xlvirdr.com"], :root img[src^="https://images.purevpnaffiliates.com"], :root a[href^="https://porntubemate.com/"], :root a[href^="https://click.dtiserv2.com/"], :root a[href^="https://clickadilla.com/"], :root a[href^="https://a.medfoodhome.com/"], :root a[href^="https://cam4com.go2cloud.org/"], :root .nya-slot[style], :root a[href^="https://a.bestcontentweb.top/"], :root atf-ad-slot, :root a[href^="https://a2.adform.net/"], :root a[href^="https://a.candyai.love/"], :root .banner-img > .pbl, :root [data-m-ad-id], :root a[href^="https://a-ads.com/"], :root a[href^="https://1winpb.com/"], :root div[id^="optidigital-adslot"], :root [href^="https://wsup.ai/"], :root a[href^="https://123-stream.org/"], :root a[href^="https://in.rabbtrk.com/"], :root a[href^="http://www.h4trck.com/"], :root [href^="https://a.acebet.com/api/click?"], :root a[href^="http://www.friendlyduck.com/AF_"], :root a[href^="http://partners.etoro.com/"], :root [href="https://chaturbate.jjgirls.com/"] > img, :root a[href^="http://cam4com.go2cloud.org/aff_c?"], :root a[href^="https://ads.betfair.com/redirect.aspx?"], :root amp-ad-custom, :root a[href*=".irtyd.com/"], :root a[href^="http://trk.globwo.online/"], :root a[onclick^="window.location.replace('https://random-affiliate.atimaze.com/"], :root a[href^="https://bongacams2.com/track?"], :root a-ad, :root a[href^="https://offhandpump.com/"], :root a[href^="http://stickingrepute.com/"], :root #slashboxes > .deals-rail, :root div[aria-label="Ads"], :root [href^="http://mypillow.com/"] > img, :root a[href^="http://bongacams.com/track?"], :root a[href^="//startgaming.net/tienda/" i], :root a[href^="https://a.medfoodsafety.com/"], :root a[href^="//go.eabids.com/"], :root a[href^=" https://www.friendlyduck.com/AF_"], :root [data-cl-spot-id], :root a[href*="/jump/next.php?r="], :root a[href^="https://go.nordvpn.net/aff"] > img, :root .\[\&_\.gdprAdTransparencyCogWheelButton\]\:\!pjra-z-\[5\], :root [href^="http://clicks.totemcash.com/"], :root a[href^="https://ad.zanox.com/ppc/"] > img, :root [data-d-ad-id], :root a[href*=".engine.adglare.net/"], :root div[id^="lazyad-"], :root a[href^="http://com-1.pro/"], :root [id^="dfp_banner"], :root [href^="https://www.profitablegatecpm.com/"], :root a[href*=".cfm?domain="][href*="&fp="], :root a[href^="https://ab.advertiserurl.com/aff/"], :root a[data-oburl^="https://paid.outbrain.com/network/redir?"], :root [id^="section-ad-banner"], :root [id^="ad_slider"], :root a[href^="https://www.goldenfrog.com/vyprvpn?offer_id="][href*="&aff_id="], :root a[href^="https://wmctjd.com/"], :root a[href*="//jjgirls.com/sex/Chaturbate"], :root [id^="ad-wrap-"], :root [href^="https://zone.gotrackier.com/"], :root a[href^="http://sarcasmadvisor.com/"], :root [href^="https://www.restoro.com/"], :root a[href^="https://track.totalav.com/"], :root a[href^="https://ctrdwm.com/"], :root [href^="https://www.targetingpartner.com/"], :root a[href^="https://join.virtuallust3d.com/"], :root .section-subheader > .section-hotel-prices-header, :root [href^="https://www.hostg.xyz/"] > img, :root a[href^="https://bngpt.com/"], :root a[href^="https://www.sheetmusicplus.com/"][href*="?aff_id="], :root a[href^="http://adultfriendfinder.com/go/"], :root a[href^="https://fastestvpn.com/lifetime-special-deal?a_aid="], :root a[href^="https://tour.mrskin.com/"], :root div[id^="ad-position-"], :root a[href^="https://www.toprevenuegate.com/"], :root a[href^="https://bc.game/"], :root a[href^="http://join.brokestraightboys.com/track/"], :root div[id^="div-ads-"], :root [href^="https://rapidgator.net/article/premium/ref/"], :root [href^="https://join.girlsoutwest.com/"], :root a[href^="https://activate-game.com/"], :root .scroll-fixable.rail-right > .deals-rail, :root [data-wpas-zoneid], :root a[href^="https://track.aftrk3.com/"], :root [href^="https://join3.bannedsextapes.com"], :root div[data-adzone], :root div[id^="adngin-"], :root [data-rc-widget], :root span[data-ez-ph-id], :root [href^="https://track.aftrk1.com/"], :root [href^="https://join.playboyplus.com/track/"], :root a[href^="https://go.xxxijmp.com"], :root [href^="https://istlnkcl.com/"], :root a[href^="https://trk.softonixs.xyz/"], :root a[href^="https://iqbroker.com/"][href*="?aff="], :root [href^="https://rpwmct.com/"], :root [href^="https://wct.link/click?"], :root a[href^="https://t.acam.link/"], :root iframe[style="border: 0; width: 970px; height: 110px;"], :root a[href^="https://go.strpjmp.com/"], :root [href^="https://url.totaladblock.com/"], :root a[href^="https://go.rmishe.com/"], :root [href^="https://ilovemyfreedoms.com/landing-"], :root [href="https://adstub.net/indo666/"], :root [href^="https://glersakr.com/"], :root a[href^="https://tm-offers.gamingadult.com/"], :root [href^="https://charmingdatings.life/"], :root a[href*=".antj.link/"], :root [data-id^="div-gpt-ad"], :root a[href^="https://tracker.loropartners.com/"], :root [href^="https://awbbjmp.com/"], :root a[href^="https://www.friendlyduck.com/AF_"], :root a[href*=".ajrkm3.com/"], :root [href^="https://ad1.adfarm1.adition.com/"], :root a[href^="https://t.ajrkm3.com/"], :root [href^="https://aads.com/campaigns/"], :root a[href^="https://fc.lc/ref/"], :root a[href^="https://go.bbrdbr.com"], :root a[href^="http://tc.tradetracker.net/"] > img, :root a[href^="https://s.zlink3.com/"], :root a[href^="http://sneakyadministration.com/"], :root [href^="https://www.brighteonstore.com/products/"] img, :root a[href^="https://bngprm.com/"], :root [href^="https://shiftnetwork.infusionsoft.com/go/"] > img, :root [href^="http://www.mypillow.com/"] > img, :root .ob_container .item-container-obpd, :root [id^="div-gpt-ad"], :root [href="https://jdrucker.com/gold"] > img, :root a[href^="https://join.virtualtaboo.com/track/"], :root [id^="ad_sky"], :root [name^="google_ads_iframe"], :root aside[id^="adrotate_widgets-"], :root a[href^="https://www.liquidfire.mobi/"], :root DFP-AD, :root .grid > .container > #aside-promotion, :root [data-type="ad-vertical"], :root [href^="https://go.xlrdr.com"], :root a[href^="https://s.cant3am.com/"], :root [data-testid^="taboola-"], :root [data-testid^="section-AdRowBillboard"], :root a[href^="https://track.1234sd123.com/"], :root zeus-ad, :root [data-testid="prism-ad-wrapper"], :root [href^="https://ad.admitad.com/"], :root [href^="https://mypillow.com/"] > img, :root [data-testid="ad_testID"], :root [data-mobile-ad-id], :root [data-dynamic-ads], :root a[href^="https://gamingadlt.com/?offer="], :root [data-desktop-ad-id], :root a[href^="https://go.rmhfrtnd.com"], :root a[href^="https://pb-imc.com/"], :root a[href^="https://www8.smartadserver.com/"], :root topadblock, :root a[href^="//s.zlinkd.com/"], :root [href^="https://mypatriotsupply.com/"] > img, :root [data-testid="adBanner-wrapper"], :root [href^="https://mylead.global/stl/"] > img, :root a[href*=".adsrv.eacdn.com/"], :root [href^="https://antiagingbed.com/discount/"] > img, :root #teaser1[style^="width:autopx;"], :root [href^="https://www.cloudways.com/en/?id"], :root [data-asg-ins], :root [data-block-type="ad"], :root [data-ad-width], :root a[href^="https://clickins.slixa.com/"], :root [onclick*="content.ad/"], :root a[href^="https://go.cmtaffiliates.com/"], :root [href^="https://optimizedelite.com/"] > img, :root div[data-ad-region], :root AMP-AD, :root [data-ad-cls], :root a[href^="https://www.adxsrve.com/"], :root a[href^="https://click.Ggpickaff.com/"], :root [data-ez-name], :root a[href^="https://go.mnaspm.com/"], :root a[href^="https://service.bv-aff-trx.com/"], :root a[href^="https://6-partner.com/"], :root [class^="s2nPlayer"], :root [href^="https://affiliate.fastcomet.com/"] > img, :root [class^="adDisplay-module"], :root a[href^="https://adclick.g.doubleclick.net/"], :root [data-freestar-ad][id], :root AD-SLOT, :root a[href^="https://combodef.com/"], :root a[href^="https://click.hoolig.app/"], :root a[href^="https://www.googleadservices.com/pagead/aclk?"] > img, :root [data-ad-module], :root a[href^="https://a.bestcontentfood.top/"], :root #kt_player > a[target="_blank"], :root a[href^="https://go.skinstrip.net"][href*="?campaignId="], :root #teaser2[style^="width:autopx;"], :root [data-revive-zoneid], :root a[href^="https://losingoldfry.com/"], :root div[id^="div-gpt-"], :root a[href^="https://gml-grp.com/"], :root .ob_dual_right > .ob_ads_header ~ .odb_div, :root div[data-ad-targeting], :root a[style="width:100%;height:100%;z-index:10000000000000000;position:absolute;top:0;left:0;"], :root [href^="https://www.avantlink.com/click.php"] img, :root [data-testid="commercial-label-taboola"], :root [class^="div-gpt-ad"], :root a[href^="https://traffdaq.com/"], :root #teaser3[style^="width:autopx;"], :root a[href^="https://go.hpyjmp.com"], :root iframe[scrolling="no"][sandbox*="allow-popups allow-modals"][style^="width: 100%; height: 100%; border: none;"], :root [href^="https://mystore.com/"] > img, :root [class^="amp-ad-"], :root a[href^="https://clixtrac.com/"], :root a[href^="https://wittered-mainging.com/"], :root a[href*="/afu.php?"], :root #teaser3[style="width: 100%;text-align: center;display: scroll;position:fixed;bottom: 0;margin: 0 auto;z-index: 103;"] { display: none !important; }</style></head>
+<body>
+
+<!-- ══════════════════════════════════════
+     FLOATING NAVIGATION
+══════════════════════════════════════ -->
+<nav id="float-nav" role="navigation" aria-label="Navigare principală" class="">
+    <div class="nav-logo">3D<span>Neamț</span></div>
+    <div class="nav-divider"></div>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#hero" class="nav-link desktop-only">Acasă</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#produse" class="nav-link desktop-only">Produse</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#proces" class="nav-link desktop-only">Proces</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#despre" class="nav-link desktop-only">Despre</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" class="nav-link desktop-only">Contact</a>
+    <button id="nav-toggle" aria-label="Deschide meniu" aria-expanded="false">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- Mobile Dropdown -->
+<div id="nav-mobile" role="menu">
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#hero" class="nav-link" role="menuitem">🏠 Acasă</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#produse" class="nav-link" role="menuitem">🎨 Produse</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#proces" class="nav-link" role="menuitem">⚙️ Proces</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#despre" class="nav-link" role="menuitem">👤 Despre</a>
+    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" class="nav-link" role="menuitem">✉️ Contact</a>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     HERO
+══════════════════════════════════════ -->
+<section id="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-glow"></div>
+    <div class="hero-glow2"></div>
+    <div class="container mx-auto px-6 py-32 hero-content">
+        <div class="max-w-3xl">
+            <div class="badge">Piatra Neamț · România · Est. 2024</div>
+            <h1 class="hero-title mb-6">
+                Figurine<br>
+                <span class="accent">3D</span> din<br>
+                <span class="accent2">inimă</span>
+            </h1>
+            <p class="hero-sub mb-10">
+                Creăm figurine și obiecte personalizate imprimate 3D cu o precizie remarcabilă.
+                De la miniaturi de colecție la cadouri unice — orice formă, orice idee.
+            </p>
+            <div class="flex flex-wrap gap-4">
+                <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#produse" class="btn-primary">
+                    <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10l4.553-2.069A1 1 0 0121 8.87V15.13a1 1 0 01-1.447.9L15 14M3 8a2 2 0 012-2h8a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"></path>
+                    </svg>
+                    Vezi Colecția
+                </a>
+                <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" class="btn-secondary">
+                    Comandă Personalizat →
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+        <span style="font-size:0.65rem;letter-spacing:0.12em;color:#fff;text-transform:uppercase;">Scroll</span>
+        <div style="width:1px;height:40px;background:linear-gradient(to bottom,#fff,transparent);animation:scrollLine 2s ease-in-out infinite;"></div>
+    </div>
+    <style>
+        @keyframes scrollLine {
+            0% { opacity: 0; transform: scaleY(0); transform-origin: top; }
+            50% { opacity: 1; transform: scaleY(1); transform-origin: top; }
+            100% { opacity: 0; transform: scaleY(1); transform-origin: bottom; }
+        }
+    </style>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     STATS BAR
+══════════════════════════════════════ -->
+<div class="stats-bar">
+    <div class="container mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4">
+            <div class="stat-item reveal visible">
+                <div class="stat-num">120<span class="acc">+</span></div>
+                <div class="stat-label">Comenzi finalizate</div>
+            </div>
+            <div class="stat-item reveal visible" style="transition-delay:0.1s">
+                <div class="stat-num">15<span class="acc">+</span></div>
+                <div class="stat-label">Materiale disponibile</div>
+            </div>
+            <div class="stat-item reveal visible" style="transition-delay:0.2s">
+                <div class="stat-num">48<span class="acc">h</span></div>
+                <div class="stat-label">Timp mediu livrare</div>
+            </div>
+            <div class="stat-item reveal visible" style="transition-delay:0.3s">
+                <div class="stat-num">100<span class="acc">%</span></div>
+                <div class="stat-label">Satisfacție clienți</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ══════════════════════════════════════
+     PRODUSE
+══════════════════════════════════════ -->
+<section id="produse" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="text-center mb-16 reveal visible">
+            <div class="section-label">Colecție</div>
+            <h2 class="section-title">Ce putem crea<br>pentru tine?</h2>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="product-card reveal visible">
+                <div class="card-img" style="background:linear-gradient(135deg,#fef3e2,#fde5b8);">🧝</div>
+                <div class="p-6">
+                    <span class="tag" style="background:#fef3e2;color:#b8722a;">Populare</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Personaje Fantasy</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Dragoni, elfi, vrăjitoare și eroi — figurine cu detalii fine pentru jucători RPG sau colecționari.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">de la <span style="color:var(--accent)">35 lei</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Comandă →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal visible" style="transition-delay:0.1s">
+                <div class="card-img" style="background:linear-gradient(135deg,#e3f0ff,#b8d6fa);">🏛️</div>
+                <div class="p-6">
+                    <span class="tag" style="background:#e3f0ff;color:#1e5fa0;">Arhitectură</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Machete &amp; Clădiri</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Miniaturi arhitecturale precise, perfecte pentru studenți, prezentări sau cadouri de suflet.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">de la <span style="color:var(--accent)">80 lei</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Comandă →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal visible" style="transition-delay:0.2s">
+                <div class="card-img" style="background:linear-gradient(135deg,#e8fce8,#b8f0b8);">🎁</div>
+                <div class="p-6">
+                    <span class="tag" style="background:#e8fce8;color:#2a8a2a;">Cadouri</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Cadouri Personalizate</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Portrete 3D, busturi, obiecte cu semnificație — cadouri unice care impresionează cu adevărat.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">de la <span style="color:var(--accent)">55 lei</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Comandă →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal visible" style="transition-delay:0.1s">
+                <div class="card-img" style="background:linear-gradient(135deg,#f0e8fc,#d8b8f8);">🚗</div>
+                <div class="p-6">
+                    <span class="tag" style="background:#f0e8fc;color:#7a2ab8;">Vehicule</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Vehicule &amp; Transport</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Mașini, trenuri, avioane și nave la scară — detalii precise pentru entuziaști și colecționari.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">de la <span style="color:var(--accent)">45 lei</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Comandă →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal visible" style="transition-delay:0.2s">
+                <div class="card-img" style="background:linear-gradient(135deg,#fce8e8,#f8b8b8);">🐾</div>
+                <div class="p-6">
+                    <span class="tag" style="background:#fce8e8;color:#b82a2a;">Animale</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Animale &amp; Natură</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Reproduceri fidele ale animalelor preferate — perfecte ca decor sau amintire a unui animal iubit.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">de la <span style="color:var(--accent)">40 lei</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Comandă →</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card reveal visible" style="transition-delay:0.3s;border:2px dashed rgba(232,168,76,0.35);background:linear-gradient(135deg,#fffbf2,#fff8e8);">
+                <div class="card-img" style="background:linear-gradient(135deg,#fffbf2,#fff0cc);">✨</div>
+                <div class="p-6">
+                    <span class="tag" style="background:rgba(232,168,76,0.15);color:var(--accent);">Custom</span>
+                    <h3 class="font-bold text-lg mt-3 mb-2" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--navy)">Ideea Ta!</h3>
+                    <p class="text-sm leading-relaxed" style="color:var(--muted)">Ai o idee specială? Îți transformăm orice concept în realitate — trimite-ne modelul sau descrierea.</p>
+                    <div class="flex items-center justify-between mt-5">
+                        <span class="font-bold" style="font-family:&#39;Outfit&#39;,sans-serif;color:var(--slate)">Preț <span style="color:var(--accent)">la cerere</span></span>
+                        <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.78rem;font-weight:600;color:var(--accent);text-decoration:none;">Contactează →</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     PROCES
+══════════════════════════════════════ -->
+<section id="proces" class="py-24" style="background:var(--light)">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-start">
+            <div class="reveal visible">
+                <div class="section-label">Cum funcționează</div>
+                <h2 class="section-title mb-6">De la idee<br>la obiect real</h2>
+                <p style="color:var(--muted);line-height:1.8;font-size:0.95rem;">
+                    Procesul nostru este simplu și transparent. De la prima discuție
+                    până la livrarea finală, ești implicat în fiecare etapă.
+                </p>
+            </div>
+            <div class="flex flex-col gap-8">
+
+                <div class="process-step reveal visible">
+                    <div class="step-num">01</div>
+                    <div>
+                        <h4 style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:6px;">Discuție &amp; Concept</h4>
+                        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;">Ne descrii ideea — prin mesaj, email sau o simplă schiță. Stabilim dimensiunile, materialul și detaliile dorite.</p>
+                    </div>
+                </div>
+
+                <div class="process-step reveal visible" style="transition-delay:0.15s">
+                    <div class="step-num">02</div>
+                    <div>
+                        <h4 style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:6px;">Modelare 3D</h4>
+                        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;">Creăm sau adaptăm modelul digital 3D și îți trimitem o previzualizare pentru aprobare înainte de tipărire.</p>
+                    </div>
+                </div>
+
+                <div class="process-step reveal visible" style="transition-delay:0.25s">
+                    <div class="step-num">03</div>
+                    <div>
+                        <h4 style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:6px;">Printare &amp; Finisare</h4>
+                        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;">Tipărim cu echipamente profesionale, apoi aplicăm tratamente de suprafață — șlefuire, vopsire sau lăcuire.</p>
+                    </div>
+                </div>
+
+                <div class="process-step reveal visible" style="transition-delay:0.35s">
+                    <div class="step-num">04</div>
+                    <div>
+                        <h4 style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:700;font-size:1.1rem;color:var(--navy);margin-bottom:6px;">Livrare</h4>
+                        <p style="color:var(--muted);font-size:0.88rem;line-height:1.7;">Ambalăm cu grijă și livrăm în Piatra Neamț sau oriunde în România prin curier rapid.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     DESPRE
+══════════════════════════════════════ -->
+<section id="despre" class="py-24 bg-white">
+    <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-16 items-center">
+
+            <div class="reveal visible">
+                <div style="background:linear-gradient(135deg,var(--navy),var(--slate));border-radius:24px;padding:48px;text-align:center;position:relative;overflow:hidden;">
+                    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(76,201,232,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(76,201,232,0.08) 1px,transparent 1px);background-size:32px 32px;"></div>
+                    <div style="font-size:5rem;margin-bottom:16px;position:relative;">🖨️</div>
+                    <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:1.5rem;color:#fff;position:relative;">Tehnologie FDM &amp; Resin</div>
+                    <div style="font-size:0.85rem;color:rgba(255,255,255,0.55);margin-top:8px;position:relative;">Rezoluție până la 0.05mm</div>
+                    <div class="grid grid-cols-2 gap-4 mt-8" style="position:relative;">
+                        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.1);">
+                            <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent);">PLA</div>
+                            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;">Ecologic &amp; solid</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.1);">
+                            <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent2);">Resin</div>
+                            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;">Ultra-detaliat</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.1);">
+                            <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent);">ABS</div>
+                            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;">Rezistent la șoc</div>
+                        </div>
+                        <div style="background:rgba(255,255,255,0.08);border-radius:12px;padding:16px;border:1px solid rgba(255,255,255,0.1);">
+                            <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:800;font-size:1.4rem;color:var(--accent2);">PETG</div>
+                            <div style="font-size:0.7rem;color:rgba(255,255,255,0.5);margin-top:4px;">Durabil &amp; flexibil</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal visible" style="transition-delay:0.15s">
+                <div class="section-label">Despre noi</div>
+                <h2 class="section-title mb-6">Pasionați de<br>imprimare 3D</h2>
+                <p style="color:var(--muted);line-height:1.9;font-size:0.95rem;margin-bottom:20px;">
+                    Suntem o echipă mică din Piatra Neamț cu o mare pasiune pentru tehnologia 3D.
+                    Am început din curiozitate și am ajuns să transformăm idei în obiecte tangibile
+                    pentru clienți din toată România.
+                </p>
+                <p style="color:var(--muted);line-height:1.9;font-size:0.95rem;margin-bottom:32px;">
+                    Folosim atât tehnica FDM (filament) cât și rășina (resin) pentru a acoperi
+                    o gamă largă de nevoi — de la piesele funcționale la figurinele extrem de detaliate.
+                </p>
+                <div class="flex items-center gap-12">
+                    <div>
+                        <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:2rem;color:var(--navy);">3<span style="color:var(--accent)">+</span></div>
+                        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Ani experiență</div>
+                    </div>
+                    <div>
+                        <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:2rem;color:var(--navy);">6<span style="color:var(--accent)">+</span></div>
+                        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Imprimante 3D</div>
+                    </div>
+                    <div>
+                        <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:2rem;color:var(--navy);">∞</div>
+                        <div style="font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:0.08em;font-weight:600;">Posibilități</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     CONTACT
+══════════════════════════════════════ -->
+<section id="contact" class="py-24" style="background:var(--light)">
+    <div class="container mx-auto px-6">
+        <div class="contact-card">
+            <div class="grid md:grid-cols-2 gap-12 relative z-10">
+
+                <div class="reveal visible">
+                    <div class="section-label" style="color:var(--accent)">Comandă acum</div>
+                    <h2 style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:clamp(1.8rem,4vw,2.5rem);color:#ffffff;letter-spacing:-0.03em;line-height:1.1;margin-bottom:16px;">
+                        Hai să creăm<br>ceva special
+                    </h2>
+                    <p style="color:rgba(255,255,255,0.55);font-size:0.9rem;line-height:1.8;margin-bottom:32px;">
+                        Completează formularul sau contactează-ne direct. Răspundem în maxim 24 de ore.
+                    </p>
+                    <div class="flex flex-col gap-4">
+                        <a href="mailto:contact@3dneamt.ro" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                            <div style="width:40px;height:40px;border-radius:10px;background:rgba(232,168,76,0.15);border:1px solid rgba(232,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;">✉️</div>
+                            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;">contact@3dneamt.ro</span>
+                        </a>
+                        <a href="tel:+40712345678" style="display:flex;align-items:center;gap:12px;text-decoration:none;">
+                            <div style="width:40px;height:40px;border-radius:10px;background:rgba(232,168,76,0.15);border:1px solid rgba(232,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;">📞</div>
+                            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;">+40 712 345 678</span>
+                        </a>
+                        <div style="display:flex;align-items:center;gap:12px;">
+                            <div style="width:40px;height:40px;border-radius:10px;background:rgba(232,168,76,0.15);border:1px solid rgba(232,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:1rem;">📍</div>
+                            <span style="color:rgba(255,255,255,0.75);font-size:0.9rem;">Piatra Neamț, România</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal visible" style="transition-delay:0.15s">
+                    <form onsubmit="handleForm(event)" class="flex flex-col gap-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:8px;">NUME</label>
+                                <input type="text" class="input-field" placeholder="Ion Popescu" required="">
+                            </div>
+                            <div>
+                                <label style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:8px;">TELEFON</label>
+                                <input type="tel" class="input-field" placeholder="07XX XXX XXX">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:8px;">EMAIL</label>
+                            <input type="email" class="input-field" placeholder="email@exemplu.ro" required="">
+                        </div>
+                        <div>
+                            <label style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:8px;">TIP FIGURINĂ</label>
+                            <select class="input-field" style="appearance:none;cursor:pointer;">
+                                <option value="" disabled="" selected="">Alege categoria...</option>
+                                <option>Personaje Fantasy</option>
+                                <option>Machete &amp; Clădiri</option>
+                                <option>Cadouri Personalizate</option>
+                                <option>Vehicule &amp; Transport</option>
+                                <option>Animale &amp; Natură</option>
+                                <option>Altceva (descrie mai jos)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label style="font-size:0.75rem;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.06em;display:block;margin-bottom:8px;">DETALII COMANDĂ</label>
+                            <textarea class="input-field" rows="3" placeholder="Descrie ideea ta — dimensiuni, materiale, culori..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary" style="justify-content:center;margin-top:4px;">
+                            Trimite Comanda 🚀
+                        </button>
+                    </form>
+                    <div id="form-success" style="display:none;text-align:center;padding:24px;">
+                        <div style="font-size:2.5rem;margin-bottom:12px;">🎉</div>
+                        <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:700;color:#fff;font-size:1.1rem;">Mesaj trimis cu succes!</div>
+                        <div style="color:rgba(255,255,255,0.55);font-size:0.85rem;margin-top:8px;">Îți răspundem în maxim 24h.</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ══════════════════════════════════════
+     FOOTER
+══════════════════════════════════════ -->
+<footer>
+    <div class="container mx-auto px-6 py-12">
+        <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-8 mb-10">
+            <div>
+                <div style="font-family:&#39;Outfit&#39;,sans-serif;font-weight:900;font-size:1.4rem;color:#fff;letter-spacing:-0.02em;margin-bottom:10px;">3D<span style="color:var(--accent)">Neamț</span></div>
+                <p style="font-size:0.82rem;line-height:1.8;color:rgba(255,255,255,0.4);">Figurine și obiecte personalizate imprimate 3D din Piatra Neamț, pentru toată România.</p>
+            </div>
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:14px;">Navigare</div>
+                <div class="flex flex-col gap-3">
+                    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#hero" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;#e8a84c&#39;" onmouseout="this.style.color=&#39;rgba(255,255,255,0.55)&#39;">Acasă</a>
+                    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#produse" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;#e8a84c&#39;" onmouseout="this.style.color=&#39;rgba(255,255,255,0.55)&#39;">Produse</a>
+                    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#proces" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;#e8a84c&#39;" onmouseout="this.style.color=&#39;rgba(255,255,255,0.55)&#39;">Cum funcționează</a>
+                    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#despre" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;#e8a84c&#39;" onmouseout="this.style.color=&#39;rgba(255,255,255,0.55)&#39;">Despre noi</a>
+                    <a href="file:///J:/alex2019/zz2023rau/nouDEluat2/cu%20claude/index%20(1)trei.html#contact" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;transition:color 0.2s;" onmouseover="this.style.color=&#39;#e8a84c&#39;" onmouseout="this.style.color=&#39;rgba(255,255,255,0.55)&#39;">Contact</a>
+                </div>
+            </div>
+            <div>
+                <div style="font-size:0.72rem;font-weight:700;letter-spacing:0.12em;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-bottom:14px;">Contact rapid</div>
+                <div class="flex flex-col gap-3">
+                    <span style="font-size:0.85rem;color:rgba(255,255,255,0.55);">📍 Piatra Neamț, Neamț</span>
+                    <a href="mailto:contact@3dneamt.ro" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;">✉️ contact@3dneamt.ro</a>
+                    <a href="tel:+40712345678" style="font-size:0.85rem;color:rgba(255,255,255,0.55);text-decoration:none;">📞 +40 712 345 678</a>
+                </div>
+            </div>
+        </div>
+        <div style="border-top:1px solid rgba(255,255,255,0.07);padding-top:24px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px;">
+            <span style="font-size:0.78rem;color:rgba(255,255,255,0.25);">© 2024 3DNeamț · Toate drepturile rezervate</span>
+            <span style="font-size:0.78rem;color:rgba(255,255,255,0.25);">Piatra Neamț · România 🇷🇴</span>
+        </div>
+    </div>
+</footer>
+
+
+<!-- ══════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════ -->
+<script>
+    // ── Floating Nav: scroll effect & active link ──
+    const floatNav = document.getElementById('float-nav');
+    const sections = document.querySelectorAll('section[id], #hero');
+    const navLinks = document.querySelectorAll('#float-nav .nav-link.desktop-only');
+
+    window.addEventListener('scroll', () => {
+        // Scrolled class
+        if (window.scrollY > 40) {
+            floatNav.classList.add('scrolled');
+        } else {
+            floatNav.classList.remove('scrolled');
+        }
+
+        // Active link highlight
+        let current = '';
+        sections.forEach(sec => {
+            if (window.scrollY >= sec.offsetTop - 120) {
+                current = sec.id;
+            }
+        });
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    });
+
+    // ── Hamburger Menu ──
+    const toggle = document.getElementById('nav-toggle');
+    const mobileMenu = document.getElementById('nav-mobile');
+
+    toggle.addEventListener('click', () => {
+        const isOpen = toggle.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', isOpen);
+        if (isOpen) {
+            mobileMenu.classList.add('visible');
+        } else {
+            mobileMenu.classList.remove('visible');
+        }
+    });
+
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            toggle.classList.remove('open');
+            toggle.setAttribute('aria-expanded', false);
+            mobileMenu.classList.remove('visible');
+        });
+    });
+
+    // Close mobile menu on outside click
+    document.addEventListener('click', (e) => {
+        if (!floatNav.contains(e.target) && !mobileMenu.contains(e.target)) {
+            toggle.classList.remove('open');
+            toggle.setAttribute('aria-expanded', false);
+            mobileMenu.classList.remove('visible');
+        }
+    });
+
+    // ── Scroll Reveal ──
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    reveals.forEach(el => observer.observe(el));
+
+    // ── Form Submit Handler ──
+    function handleForm(e) {
+        e.preventDefault();
+        const form = e.target;
+        const success = document.getElementById('form-success');
+        form.style.opacity = '0';
+        form.style.transition = 'opacity 0.3s';
+        setTimeout(() => {
+            form.style.display = 'none';
+            success.style.display = 'block';
+            success.style.opacity = '0';
+            success.style.transition = 'opacity 0.4s';
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => {
+                    success.style.opacity = '1';
+                });
+            });
+        }, 300);
+    }
+</script>
+
+
+</body></html>
